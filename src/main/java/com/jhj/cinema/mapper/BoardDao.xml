@@ -51,7 +51,7 @@
     </select>
     
     <!-- 글 삭제 -->
-   	<delete id="boardDeleteDao">
+   	<delete id="deleteContentDao">
    		DELETE FROM boardtbl WHERE bnum=#{param1}
    	</delete>
     

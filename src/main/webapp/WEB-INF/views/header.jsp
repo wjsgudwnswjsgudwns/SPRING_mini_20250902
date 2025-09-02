@@ -10,12 +10,12 @@
 <body>
 <header>
     <div class="logo">
-        <a href="${pageContext.request.contextPath}/index.jsp">🎬 MyCinema</a>
+        <a href="index">🎬 MyCinema</a>
     </div>
     <nav>
         <ul>
             <li><a href="#">영화</a></li>
-            <li><a href="#">예매</a></li>
+            <li><a href="reservation">예매</a></li>
             <li><a href="boardlist">게시판</a></li>
             <li><a href="#">오시는 길</a></li>
             <c:choose>
