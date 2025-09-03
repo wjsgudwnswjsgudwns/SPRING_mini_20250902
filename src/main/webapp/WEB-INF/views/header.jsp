@@ -17,16 +17,16 @@
             <li><a href="#">영화</a></li>
             <li><a href="reservation">예매</a></li>
             <li><a href="boardlist">게시판</a></li>
-            <li><a href="#">오시는 길</a></li>
+            <li><a href="come">오시는 길</a></li>
             <c:choose>
-            	<c:when test="">
+            	<c:when test="${empty sessionScope.sessionid}">
             		<li><a href="login">로그인</a></li>
             	</c:when>
             	<c:otherwise>
             		<li><a href="logout">로그아웃</a></li>
             	</c:otherwise>
             </c:choose>
-            <c:if test="${empty sessionScope.sessionid }">
+            <c:if test="${empty sessionScope.sessionid}">
             	<li><a href="join">회원가입</a></li>
             </c:if>
         </ul>

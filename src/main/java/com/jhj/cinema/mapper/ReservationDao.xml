@@ -6,5 +6,8 @@
     
     <mapper namespace="com.jhj.cinema.dao.ReservationDao">
     
+    	<insert id="reservationMovieDao">
+    		INSERT INTO reservation(reservationid, memberid, schduleid, seat_number) VALUES (reservation_seq.nextval,#{param1},#{param2},#{param3})
+    	</insert>
     
     </mapper>

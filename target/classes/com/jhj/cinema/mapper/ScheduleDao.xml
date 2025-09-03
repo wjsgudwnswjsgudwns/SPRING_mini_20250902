@@ -6,5 +6,11 @@
     
     <mapper namespace="com.jhj.cinema.dao.ScheduleDao">
     
+    	<select id="getAllSchedules" resultType="com.jhj.cinema.dto.ScheduleDto">
+    		SELECT * FROM schedule
+    	</select>
     
+    	<insert id="reservationScheduleDao">
+    		INSERT INTO schedule(scheduleid, movieid) VALUES (#{param1},#{param2})
+    	</insert>
     </mapper>

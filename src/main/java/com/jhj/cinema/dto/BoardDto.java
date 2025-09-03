@@ -13,10 +13,14 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BoardDto {
 
+	private int rnum; // rownum 값 필드
+	
 	private int bnum;
 	private String btitle;
 	private String bcontent;
 	private String memberid;
 	private int bhit;
 	private Timestamp bdate;
+	
+	private MemberDto memberDto;
 }

@@ -6,7 +6,7 @@ import com.jhj.cinema.dto.BoardDto;
 
 public interface BoardDao {
 
-	public List<BoardDto> boardlistDao(); // 게시판 보기
+	public List<BoardDto> pageBoardListDao(int startRow,int endRow); // 게시판 글 목록 보기 -> 페이징 됨
 	
 	public void contentWriteDao(String btitle, String memberid, String bcontent); // 글 작성
 	
@@ -17,4 +17,6 @@ public interface BoardDao {
 	public void deleteContentDao(int bnum); // 글 삭제
 	
 	public void contentModifyDao(String btitle, String memberid, String bcontent, int bnum); // 글 수정
+	
+	public int allBoardCountDao();
 }

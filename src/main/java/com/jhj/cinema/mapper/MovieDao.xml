@@ -6,5 +6,8 @@
     
     <mapper namespace="com.jhj.cinema.dao.MovieDao">
     
+    	<select id="getAllMovies" resultType="com.jhj.cinema.dto.MovieDto">
+    		SELECT * FROM movie
+    	</select>
     
     </mapper>

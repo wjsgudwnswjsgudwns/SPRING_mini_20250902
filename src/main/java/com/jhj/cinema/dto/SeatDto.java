@@ -1,17 +1,17 @@
 package com.jhj.cinema.dto;
 
+import lombok.Setter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TheaterDto {
+public class SeatDto {
 
+	private int seatid;
 	private int theaterid;
-	private String name;
-	private int seat_count;
+	private String seat_number;
 }

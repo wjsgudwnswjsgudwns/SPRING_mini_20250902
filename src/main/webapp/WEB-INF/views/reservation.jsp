@@ -26,7 +26,7 @@
         <select id="schedule" name="scheduleid" required>
             <c:forEach var="schedule" items="${scheduleList}">
                 <option value="${schedule.scheduleid}">
-                    ${schedule.start_time} ~ ${schedule.end_time} (상영관: ${schedule.theatername})
+                    ${schedule.startTime} ~ ${schedule.endTime} (상영관: ${schedule.theaterId})
                 </option>
             </c:forEach>
         </select>

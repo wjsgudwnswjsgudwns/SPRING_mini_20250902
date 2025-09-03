@@ -1,5 +1,10 @@
 package com.jhj.cinema.dao;
 
-public interface TheaterDao {
+import java.util.List;
 
+import com.jhj.cinema.dto.TheaterDto;
+
+public interface TheaterDao {
+	
+	public List<TheaterDto> getAllTheaters();
 }

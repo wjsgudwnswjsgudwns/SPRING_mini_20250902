@@ -6,6 +6,20 @@
     
     <mapper namespace="com.jhj.cinema.dao.BoardDao">
     
+   	<select id="boardlistDao" resultType="com.jhj.cinema.dto.BoardDto">
+    	SELECT * FROM cinemaboard
+	</select>
+   	
+   	<!-- 글쓰기 -->
+   	<insert id="contentWriteDao">
+   		INSERT INTO cinemaboard(bnum,btitle,memberid,bcontent,bhit) VALUES (BOARD_SEQ.nextval,#{param1},#{param2},#{param3},0)
+   	</insert>
+   	
+   	<!-- 조회수 -->
+   	<update id="bhitDao">
+   		UPDATE cinemaboard SET bhit=bhit+1 WHERE bnum=#{param1}
+   	</update>
+    
     <!-- 특정유저 정보 -->
    	<!-- board:member 1:1 관계 매핑 -->
    	<resultMap type="com.jhj.cinema.dto.BoardDto" id="boardWithMember">
@@ -25,30 +39,25 @@
    			<result property="memberphone" column="memberphone"/>
    		</association>
    	</resultMap>
-   	
-   	<!-- 게시판 보기 -->
-   	<select id="boardlistDao" resultMap="boardWithMember">
-   		SELECT b.bnum,b.btitle,b.bcontent,b.memberid,m.membername,b.bhit,b.bdate  
-   		FROM cinemaboard b
-   		INNER JOIN cinemamember m 
-   		ON b.memberid = m.memberid  
-   		ORDER BY b.bnum DESC
-   	</select>
-   	
-   	<!-- 글쓰기 -->
-   	<insert id="contentWriteDao">
-   		INSERT INTO cinemaboard(bnum,btitle,memberid,bcontent,bhit) VALUES (BOARD_SEQ.nextval,#{param1},#{param2},#{param3},0)
-   	</insert>
-   	
-   	<!-- 조회수 -->
-   	<update id="bhitDao">
-   		UPDATE cinemaboard SET bhit=bhit+1 WHERE bnum=#{param1}
-   	</update>
     
-    <!-- 게시글 보기 -->
-    <select id="contentViewDao" resultType="com.jhj.cinema.dao.BoardDao">
-    	SELECT * FROM cinemaboard WHERE bnum=#{param1}
-    </select>
+    <select id="pageBoardListDao" resultMap="boardWithMember">
+    	<![CDATA[
+      select *
+             from (
+                  select ROWNUM as rnum, r.*
+                      from
+                          (SELECT b.bnum, b.btitle, b.bcontent, b.memberid, m.membername, b.bhit, b.bdate
+                              FROM cinemaboard b
+                                  INNER JOIN cinemamember m ON b.memberid = m.memberid   
+                                      ORDER BY b.bnum DESC) r where rownum <= #{param2})
+                                          where rnum >= #{param1}
+      ]]>      
+    	</select>
+    
+    <!-- 모든 글 갯수 -->
+   	<select id="allBoardCountDao" resultType="int">
+   		SELECT COUNT(*) FROM cinemaboard
+   	</select>
     
     <!-- 글 삭제 -->
    	<delete id="deleteContentDao">

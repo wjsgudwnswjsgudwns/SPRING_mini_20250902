@@ -6,5 +6,8 @@
     
     <mapper namespace="com.jhj.cinema.dao.TheaterDao">
     
+    	<select id="getAllTheaters" resultType="com.jhj.cinema.dto.TheaterDto">
+    		SELECT * FROM theater
+    	</select>
     
     </mapper>
