@@ -40,4 +40,10 @@ public class IndexController {
 		
 		return "come";
 	}
+	
+	@RequestMapping (value = "/test")
+	public String test(HttpSession session) {
+		
+		return "test";
+	}
 }

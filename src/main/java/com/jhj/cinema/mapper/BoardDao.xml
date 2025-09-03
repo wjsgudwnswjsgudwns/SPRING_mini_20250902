@@ -5,10 +5,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.jhj.cinema.dao.BoardDao">
-    
-   	<select id="boardlistDao" resultType="com.jhj.cinema.dto.BoardDto">
-    	SELECT * FROM cinemaboard
-	</select>
    	
    	<!-- 글쓰기 -->
    	<insert id="contentWriteDao">
@@ -61,12 +57,18 @@
     
     <!-- 글 삭제 -->
    	<delete id="deleteContentDao">
-   		DELETE FROM boardtbl WHERE bnum=#{param1}
+   		DELETE FROM cinemaboard WHERE bnum=#{param1}
    	</delete>
     
     <!-- 글 수정 -->
     <update id="contentModifyDao">
     	UPDATE cinemaboard SET btitle=#{param1},memberid=#{param2},bcontent=#{param3} WHERE bnum=#{param4}
     </update>
+    
+    <!-- 게시글 보기 -->
+    <select id="contentViewDao" resultType="com.jhj.cinema.dto.BoardDto">
+		 SELECT * FROM cinemaboard WHERE bnum=#{param1}
+    </select>
+    
     
     </mapper>

@@ -1,12 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>새 글 작성</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/contentWrite.css">
 </head>
 <body>
-
+    <%@ include file="header.jsp" %>
+    
+    <div class="board-container">
+        <h2>새 글 작성</h2>
+        <form action="contentWriteOk" method="post">
+            <div class="form-group">
+                <label for="bName">작성자:</label>
+                <input type="text" id="memberid" name="memberid" value="${sessionScope.sessionid}" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="bTitle">제목:</label>
+                <input type="text" id="btitle" name="btitle">
+            </div>
+            <div class="form-group">
+                <label for="bContent">내용:</label>
+                <textarea id="bcontent" name="bcontent"></textarea>
+            </div>
+            <div class="action-buttons">
+                <button type="submit">작성 완료</button>
+                <button type="button" onclick="history.back()">취소</button>
+            </div>
+        </form>
+    </div>
+    
+    <%@ include file="footer.jsp" %>
 </body>
 </html>

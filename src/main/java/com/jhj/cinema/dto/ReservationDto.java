@@ -16,10 +16,12 @@ public class ReservationDto {
 
 	private int reservationid;
 	private String memberid;
-	private int schduleid;
-	private int seat_number;
+	private int scheduleid;
+	private String seat_number;
 	private Timestamp reservation_date;
 	private String status;
+	private int movieid;
 	
-	private List<ScheduleDto> scheduleDtos;
+	private List<ScheduleDto> scheduleDto;
+	private List<MovieDto> movieDto;
 }

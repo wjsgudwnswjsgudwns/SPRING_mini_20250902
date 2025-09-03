@@ -1,5 +1,6 @@
 package com.jhj.cinema.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import com.jhj.cinema.dao.ScheduleDao;
 import com.jhj.cinema.dao.SeatDao;
 import com.jhj.cinema.dao.TheaterDao;
 import com.jhj.cinema.dto.MovieDto;
+import com.jhj.cinema.dto.ReservationDto;
 import com.jhj.cinema.dto.ScheduleDto;
 import com.jhj.cinema.dto.SeatDto;
 import com.jhj.cinema.dto.TheaterDto;
@@ -28,8 +30,13 @@ public class ReservationController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping(value="/reservation", method=RequestMethod.GET)
-	public String reservation(Model model) {
+	@RequestMapping(value="reservation", method=RequestMethod.GET)
+	public String reservation(Model model, HttpSession session) {
+		String sessionid = (String)session.getAttribute("sessionid");
+		if(sessionid == null) {
+			return "login";
+		}
+		
 		MovieDao movieDao = sqlSession.getMapper(MovieDao.class);
 		ScheduleDao scheduleDao = sqlSession.getMapper(ScheduleDao.class);
 		SeatDao seatDao = sqlSession.getMapper(SeatDao.class);
@@ -48,19 +55,49 @@ public class ReservationController {
 	    return "reservation";
 	}	
 
-	@RequestMapping(value="/reserveOk", method=RequestMethod.POST)
+	@RequestMapping(value="reserveOk", method=RequestMethod.POST)
 	public String reserveOk(HttpServletRequest request, HttpSession session) {
-	    String memberid = (String) session.getAttribute("memberid");
+	    String memberid = (String) session.getAttribute("sessionid");
+	    
+	    if (memberid == null) {
+	        return "redirect:login"; 
+	    }
+	    
 	    int movieid = Integer.parseInt(request.getParameter("movieid"));
 	    int scheduleid = Integer.parseInt(request.getParameter("scheduleid"));
 	    String seat_number = request.getParameter("seat_number");
 	    
+	    
 	    ReservationDao reservationDao = sqlSession.getMapper(ReservationDao.class);
-	    reservationDao.reservationMovieDao(memberid, scheduleid, seat_number);
+	    reservationDao.reservationMovieDao(memberid, scheduleid, seat_number,movieid);
 	    
-	    ScheduleDao scheduleDao = sqlSession.getMapper(ScheduleDao.class);
-	    scheduleDao.reservationScheduleDao(scheduleid, movieid);
+	    //ScheduleDao scheduleDao = sqlSession.getMapper(ScheduleDao.class);
+	    //scheduleDao.reservationScheduleDao(scheduleid, movieid);
 	    
-	   return "redirect:/reservationComplete";
+	   return "redirect:reservationComplete";
+	}
+	
+	@RequestMapping(value="reservationComplete")
+	public String reservationComplete(HttpServletRequest request, HttpSession session, Model model) {
+		String memberid = (String) session.getAttribute("sessionid");
+		if (memberid == null) {
+	        return "redirect:login"; 
+	    }
+		
+		ReservationDao reservationDao = sqlSession.getMapper(ReservationDao.class);
+		List<ReservationDto> reservationDtos = reservationDao.reservationCheck(memberid);
+		
+		model.addAttribute("reservationDto", reservationDtos);
+	    
+		return "reservationComplete";
+	}
+	
+	@RequestMapping(value="deletereservation")
+	public String deletereservation(HttpServletRequest request) {
+		int reservationid = Integer.parseInt(request.getParameter("reservationid"));
+		ReservationDao reservationDao = sqlSession.getMapper(ReservationDao.class);
+		reservationDao.deleteReservation(reservationid);
+		
+		return "redirect:reservationComplete";
 	}
 }

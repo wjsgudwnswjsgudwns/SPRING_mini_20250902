@@ -1,5 +1,7 @@
 package com.jhj.cinema.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,4 +20,6 @@ public class MovieDto {
 	private int duration;
 	private String rating;
 	
+	private List<ReservationDto> reservationDtos;
+	private List<ScheduleDto> scheduleDto;
 }

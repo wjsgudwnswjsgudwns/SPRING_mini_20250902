@@ -54,5 +54,66 @@ public class MemberController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/findpw")
+	public String findpw() {
+		return "findpw";
+	}
+	
+	@RequestMapping(value = "/findpwOk")
+	public String findpwOk(Model model, HttpServletRequest request) {
+		String memberid = request.getParameter("memberid");
+		String memberemail = request.getParameter("memberemail");
+		String memberphone = request.getParameter("memberphone");
+		
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		int result = memberDao.findpwDao(memberid, memberemail, memberphone);
+		
+		if(result == 1) {
+			
+			return "changepw";
+		} else {
+			model.addAttribute("msg", "존재하지 않는 아이디입니다.");
+			model.addAttribute("url", "findpw");
+			
+			return "alert/alert";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/changepw")
+	public String changepw(Model model, HttpServletRequest request) {
+		
+		return "changepw";
+	}
+	
+	@RequestMapping(value = "/changepwOk")
+	public String changepwOk(Model model, HttpServletRequest request) {
+		String memberid = request.getParameter("memberid");
+		String memberpw = request.getParameter("newpw");
+		String confirmpw = request.getParameter("confirmpw");
+		
+		if(memberpw.equals(confirmpw)) {
+			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+			int result = memberDao.changePwDao(memberpw, memberid);
+			
+			if(result == 1) {
+				model.addAttribute("msg", "비밀번호가 변경되었습니다");
+				model.addAttribute("url", "login");	
+				
+				return "alert/alert";
+			} else {
+				model.addAttribute("msg", "다시 시도해주세요");
+				model.addAttribute("url", "changepw");	
+				
+				return "alert/alert";
+			}
+		} else {
+			model.addAttribute("msg", "비밀번호 확인이 잘못 입력되었습니다.");
+			model.addAttribute("url", "changepw");	
+			
+			return "alert/alert";
+		}
+
+	}
 	
 }

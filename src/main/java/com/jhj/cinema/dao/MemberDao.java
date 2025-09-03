@@ -1,6 +1,6 @@
 package com.jhj.cinema.dao;
 
-import com.jhj.cinema.dto.MemberDto;
+import org.apache.ibatis.annotations.Param;
 
 public interface MemberDao {
 
@@ -8,5 +8,9 @@ public interface MemberDao {
 	
 	public int loginDao(String memberid, String memberpw);
 	
+	public int findpwDao(@Param("memberid") String memberid,
+		    @Param("memberemail") String memberemail,
+		    @Param("memberphone") String memberphone);
 	
+	public int changePwDao(String pw, String memberid);
 }

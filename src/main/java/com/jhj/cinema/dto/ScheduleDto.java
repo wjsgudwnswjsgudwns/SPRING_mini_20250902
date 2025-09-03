@@ -16,10 +16,12 @@ public class ScheduleDto {
 
 	private int scheduleid;
 	private int movieid;
-	private int theaterid;
+	private int theaterId;
 	private Timestamp startTime;
 	private Timestamp endTime;
 	private int price;
+	private int reserved_seat;
 	
 	private List<MovieDto> movieDtos;
+	private List<ReservationDto> reservationDtos;
 }

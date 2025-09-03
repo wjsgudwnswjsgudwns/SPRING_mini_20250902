@@ -11,6 +11,8 @@
     	</select>
     
     	<insert id="reservationScheduleDao">
-    		INSERT INTO schedule(scheduleid, movieid) VALUES (#{param1},#{param2})
+    		UPDATE schedule
+    		SET reserved_seat_count = reserved_seat_count + 1
+    		WHERE scheduleid = #{param1}
     	</insert>
     </mapper>

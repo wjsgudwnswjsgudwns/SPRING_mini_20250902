@@ -14,4 +14,16 @@
     	SELECT COUNT(*) FROM cinemamember WHERE memberid=#{param1} AND memberpw=#{param2}
     </select>
     
+    <select id="findpwDao" resultType="int" >
+    	SELECT COUNT(*) 
+	    FROM cinemamember 
+	    WHERE memberid=#{memberid,jdbcType=VARCHAR} 
+	      AND memberemail=#{memberemail,jdbcType=VARCHAR} 
+	      AND memberphone=#{memberphone,jdbcType=VARCHAR}
+    </select>
+    
+    <update id="changePwDao">
+    	UPDATE cinemamember SET memberpw=#{param1} WHERE memberid=#{param2}
+    </update>
+    
     </mapper>

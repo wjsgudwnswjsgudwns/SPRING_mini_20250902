@@ -14,6 +14,9 @@
     <div class="container">
         <h1>게시판 목록</h1>
         <table class="board-table">
+        
+        <input type="button" value="글쓰기" onclick="javascript:window.location.href='contentWrite'">
+        
             <thead>
                 <tr>
                     <th>번호</th>
@@ -28,7 +31,7 @@
 					<tr>
 						<td>${boardCount - ((pageNum - 1) * 10) - status.index}</td>
 						<td>
-							<a href="boardView?bnum=${boardDto.bnum}">${boardDto.btitle}</a>
+							<a href="contentView?bnum=${boardDto.bnum}">${boardDto.btitle}</a>
 						</td>
 						<td>${boardDto.memberid}</td>
 						<td>
@@ -39,6 +42,7 @@
 				</c:forEach>
             </tbody>
         </table>
+        
         
         <div class="pagination">
     <c:if test="${pageNum>1}">

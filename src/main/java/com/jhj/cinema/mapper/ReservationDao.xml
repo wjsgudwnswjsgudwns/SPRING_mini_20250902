@@ -7,7 +7,50 @@
     <mapper namespace="com.jhj.cinema.dao.ReservationDao">
     
     	<insert id="reservationMovieDao">
-    		INSERT INTO reservation(reservationid, memberid, schduleid, seat_number) VALUES (reservation_seq.nextval,#{param1},#{param2},#{param3})
+    		INSERT INTO reservation(reservationid, memberid, scheduleid, seat_number,movieid) 
+			VALUES (reservation_seq.nextval, #{memberid}, #{scheduleid}, #{seat_number},#{movieid})
     	</insert>
     
+    	<!-- board:member 1:1 관계 매핑 -->
+   	<resultMap type="com.jhj.cinema.dto.ReservationDto" id="reservationWithMember">
+   		<id property="reservationid" column="reservationid"/> <!-- board 테이블 기본키 세팅 -->
+   		<result property="memberid" column="memberid"/> <!-- board 테이블 나머지 필드 세팅 -->
+   		<result property="scheduleid" column="scheduleid"/> <!-- board 테이블 나머지 필드 세팅 -->
+   		<result property="memberid" column="memberid"/> <!-- board 테이블 나머지 필드 세팅 -->
+   		<result property="seat_number" column="seat_number"/> <!-- board 테이블 나머지 필드 세팅 -->
+   		<result property="reservation_date" column="reservation_date"/> <!-- board 테이블 나머지 필드 세팅 -->
+   		<result property="status" column="status"/> <!-- board 테이블 나머지 필드 세팅 -->
+   		
+   		<collection property="scheduleDto" ofType="com.jhj.cinema.dto.ScheduleDto">
+   			<id property="scheduleid" column="scheduleid"/>
+   			<result property="movieid" column="movieid"/>
+   			<result property="theaterId" column="theaterId"/>
+   			<result property="start_time" column="start_time"/>
+   			<result property="end_time" column="end_time"/>
+   			<result property="price" column="price"/>
+   		</collection>
+   		
+   		<collection property="movieDto" ofType="com.jhj.cinema.dto.MovieDto">
+            <id property="movieid" column="movieid"/>
+            <result property="moviename" column="moviename"/>
+            <result property="gerne" column="gerne"/>
+            <result property="director" column="director"/>
+            <result property="duration" column="duration"/>
+            <result property="rating" column="rating"/>
+        </collection>
+   	</resultMap>
+
+    <select id="reservationCheck" resultMap="reservationWithMember">
+    SELECT
+        *
+	    FROM reservation r
+	    JOIN schedule s ON r.scheduleid = s.scheduleid
+	    JOIN movie m ON s.movieid = m.movieid
+	    WHERE r.memberid = #{memberid}
+	</select>
+	
+	<delete id="deleteReservation">
+		DELETE FROM reservation WHERE reservationid=#{param1}
+	</delete>
+    	
     </mapper>

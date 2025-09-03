@@ -81,8 +81,9 @@ public class BoardController {
     	int bnum = Integer.parseInt(request.getParameter("bnum"));
     	
     	BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+    	boardDao.bhitDao(bnum);
     	BoardDto boardDto = boardDao.contentViewDao(bnum);
-    	
+  
     	model.addAttribute("boardDto", boardDto);
     	
     	return "contentView";
@@ -100,6 +101,13 @@ public class BoardController {
     
     @RequestMapping(value = "/contentModify")
     public String contentModify(HttpServletRequest request, Model model) {
+    	int bnum = Integer.parseInt(request.getParameter("bnum"));
+    	
+    	BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+    	BoardDto boardDto = boardDao.contentViewDao(bnum);
+    	
+    	model.addAttribute("boardDto", boardDto);
+    	
     	
     	return "contentModify";
     }
@@ -114,6 +122,6 @@ public class BoardController {
     	BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
     	boardDao.contentModifyDao(btitle, memberid, bcontent, bnum);
     	
-    	return "contentModifyOk";
+    	return "redirect:contentView?bnum="+bnum;
     }
 }

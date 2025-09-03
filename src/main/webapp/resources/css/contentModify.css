@@ -1,1 +1,94 @@
 @charset "UTF-8";
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-container {
+    width: 100%;
+}
+
+.footer-container {
+    width: 100%;
+    margin-top: auto;
+}
+
+.board-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    max-width: 90%;
+    margin: 50px auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+    font-size: 16px;
+}
+
+.form-group textarea {
+    min-height: 200px;
+    resize: vertical; /* 세로 크기만 조절 가능하게 함 */
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: white;
+}
+
+.action-buttons button[type="submit"] {
+    background-color: #2196F3; /* 수정 완료 (파란색) */
+}
+
+.action-buttons button[type="button"] {
+    background-color: #f44336; /* 취소 (빨간색) */
+}
+
+.action-buttons button:hover {
+    opacity: 0.8;
+}
+
+/* 읽기 전용 필드 스타일 */
+input[readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}

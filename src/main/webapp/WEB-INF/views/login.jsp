@@ -5,9 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인 - MyCinema</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css">
 </head>
 <body>
+<%@ include file="header.jsp" %>
+
 <div class="login-container">
     <div class="login-box">
         <div class="logo">
@@ -26,10 +29,13 @@
             </div>
             <button type="submit">로그인</button>
             <div class="links">
-                <a href="join">회원가입</a> | <a href="#">비밀번호 찾기</a>
+                <a href="join">회원가입</a> | <a href="findpw">비밀번호 찾기</a>
             </div>
         </form>
     </div>
 </div>
+
+<%@ include file="footer.jsp" %>
 </body>
+
 </html>
