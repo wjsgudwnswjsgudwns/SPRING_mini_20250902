@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>영화 예매 시스템</title>
-<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 </head>
 <body>
 <header>
