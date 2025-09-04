@@ -45,3 +45,116 @@ footer {
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     text-align: center;
 }
+
+/* 로그인 박스 안 로고 */
+.login-box .logo img {
+    max-width: 150px !important;  /* 강제 적용 */
+    height: auto !important;      /* 비율 유지 */
+    margin-bottom: 20px !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 로그인 박스 스타일 */
+.login-box {
+    width: 380px;
+    padding: 40px 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* 로고 */
+.login-box .logo img {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* 제목 */
+.login-box h2 {
+    margin-bottom: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 입력 그룹 */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+    border-color: #ff4444;
+    outline: none;
+    box-shadow: 0 0 6px rgba(255, 68, 68, 0.3);
+}
+
+/* 버튼 */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff4444;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #e23333;
+}
+
+/* 링크 */
+.links {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.links a {
+    color: #ff4444;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.links a:hover {
+    color: #e23333;
+    text-decoration: underline;
+}
+
+/* 박스 등장 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

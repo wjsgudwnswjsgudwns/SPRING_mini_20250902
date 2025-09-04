@@ -5,33 +5,35 @@
 <html>
 <head>
 <title>영화 예매 시스템</title>
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 </head>
 <body>
-<header>
-    <div class="logo">
-        <a href="index">🎬 MyCinema</a>
-    </div>
-    <nav>
-        <ul>
-			<li><a href="#">영화</a></li>
-			<li><a href="reservation">예매</a></li>
-			<c:if test="${not empty sessionScope.sessionid}">
-            	<li><a href="reservationComplete">나의 예매 확인</a></li>
-            </c:if>
-				<li><a href="boardlist">게시판</a></li>
-				<li><a href="come">오시는 길</a></li>
-				<c:choose>
-				    <c:when test="${empty sessionScope.sessionid}">
-				        <li><a href="login">로그인</a></li>
-				    </c:when>
-				    <c:otherwise>
-				        <li><a href="logout">로그아웃</a></li>
-				    </c:otherwise>
-				</c:choose>
-			<c:if test="${empty sessionScope.sessionid}">
-            	<li><a href="join">회원가입</a></li>
-            </c:if>
-		</ul>
-    </nav>
+<header class="site-header">
+    <div class="container">
+        <div class="logo">
+            <a href="index">🎬 MyCinema</a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#">영화</a></li>
+                <li><a href="reservation">예매</a></li>
+                <c:if test="${not empty sessionScope.sessionid}">
+                    <li><a href="reservationComplete">나의 예매 확인</a></li>
+                </c:if>
+                <li><a href="boardlist">게시판</a></li>
+                <li><a href="come">오시는 길</a></li>
+                <c:choose>
+                    <c:when test="${empty sessionScope.sessionid}">
+                        <li><a href="login">로그인</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="logout">로그아웃</a></li>
+                    </c:otherwise>
+                </c:choose>
+                <c:if test="${empty sessionScope.sessionid}">
+                    <li><a href="join">회원가입</a></li>
+                </c:if>
+            </ul>
+        </nav>
+    </div>
 </header>
